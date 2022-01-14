@@ -1,0 +1,53 @@
+name: Basic-CI
+
+# Pipeline triggers
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  # Build-Workflow
+  build:
+  
+    runs-on: ubuntu-latest
+    
+    # "Work-Steps" that are to be done
+    steps:
+    - uses: actions/checkout@v2
+      with: 
+        fetch-depth: 0
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.17
+        
+    # Required to run lint/vet
+    - name: Install dependencies
+      run: |
+        go version
+        go get -u golang.org/x/lint/golint
+    
+    # Run it
+    - name: Build
+      run: go build .
+    
+    # Use vet & lint to find errors
+    - name: Run vet & lint
+      run: |
+        go vet .
+        golint .
+
+    # Run unit tests
+    - name: Test
+      run: go test -v
+      
+    # SonarCloud
+    - name: SonarCloud Scan
+      uses: SonarSource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
