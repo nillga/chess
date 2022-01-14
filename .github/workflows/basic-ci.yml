@@ -42,8 +42,11 @@ jobs:
         golint .
 
     # Run unit tests
-    - name: Test
-      run: go test -v
+    - name: Test With Coverage
+      run: go test -gcflags=-l -v  -coverprofile=coverage.txt -covermode=atomic .
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
       
     # SonarCloud
     - name: SonarCloud Scan
