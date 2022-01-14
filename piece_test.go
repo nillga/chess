@@ -44,9 +44,13 @@ func TestPiece(t *testing.T) {
 	}
 }
 
-func TestStringers(t *testing.T) {
-	blackPiece, whitePiece, noPiece := BlackRook, WhiteBishop, Empty
+var (
+	blackPiece = BlackRook
+	whitePiece = WhiteBishop
+	noPiece =  Empty
+)
 
+func TestPieceString(t *testing.T) {
 	if blackPiece.String() != "♜" {
 		t.Fatalf("Incorrect string %s instead of ♜", blackPiece.String())
 	}
@@ -56,6 +60,9 @@ func TestStringers(t *testing.T) {
 	if noPiece.String() != " " {
 		t.Fatalf("Incorrect string %s instead of blank", noPiece.String())
 	}
+}
+
+func TestColorString(t *testing.T) {
 	if blackPiece.Color().String() != "black" {
 		t.Fatalf("Incorrect string %s instead of 'black'", blackPiece.Color().String())
 	}
@@ -65,6 +72,9 @@ func TestStringers(t *testing.T) {
 	if noPiece.Color().String() != "" {
 		t.Fatalf("Incorrect string %s instead of ''", noPiece.Color().String())
 	}
+}
+
+func TestAbstractString(t *testing.T) {
 	if blackPiece.Abstract().String() != "R" {
 		t.Fatalf("Incorrect string %s instead of 'R'", blackPiece.Abstract().String())
 	}
@@ -74,6 +84,9 @@ func TestStringers(t *testing.T) {
 	if noPiece.Abstract().String() != "" {
 		t.Fatalf("Incorrect string %s instead of ''", noPiece.Abstract().String())
 	}
+}
+
+func TestPieceFEN(t *testing.T) {
 	if blackPiece.FEN() != "r" {
 		t.Fatalf("Incorrect FEN char %s instead of 'r'", blackPiece.FEN())
 	}

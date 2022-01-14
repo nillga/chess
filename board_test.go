@@ -64,7 +64,7 @@ type pieceBitboard struct {
 	tb Board
 }
 
-func TestBoard_SetPieceBitboard(t *testing.T) {
+func TestBoardSetPieceBitboard(t *testing.T) {
 	tests := []pieceBitboard{
 		{"White Pawn", WhitePawn, Bitboard(255), Board{}, Board{wPawns: Bitboard(255)}},
 		{"White Knight", WhiteKnight, Bitboard(10), Board{}, Board{wKnights: Bitboard(10)}},
@@ -92,7 +92,7 @@ func TestBoard_SetPieceBitboard(t *testing.T) {
 	}
 }
 
-func TestBoard_UtilBitboards(t *testing.T) {
+func TestBoardUtilBitboards(t *testing.T) {
 	testBoard := Board{
 		bKing: Bitboard(1<<11),
 		wKing: Bitboard(1<<45),

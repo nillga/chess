@@ -19,7 +19,7 @@ var bitboardTests = []bitboardTest{
 	{Bitboard(68000),A6, true},
 }
 
-func TestBitboard_IsSet(t *testing.T) {
+func TestBitboardIsSet(t *testing.T) {
 	for i, test := range bitboardTests {
 		t.Run(fmt.Sprintf("Bitboard_Occupation %d",i), func(t *testing.T) {
 			if set :=test.b.IsSet(test.s); set != test.r {
@@ -29,7 +29,7 @@ func TestBitboard_IsSet(t *testing.T) {
 	}
 }
 
-func TestBitboard_areSet(t *testing.T) {
+func TestBitboardAreSet(t *testing.T) {
 	b := Bitboard(68000)
 	t.Run("They're set", func(t *testing.T) {
 		if !b.areSet(A6,D7,A7,H8,F8) {
