@@ -35,12 +35,12 @@ func MakeBitboard(squares map[Square]bool) (b Bitboard) {
 }
 
 func (b Bitboard) IsSet(s Square) bool {
-	return (bits.RotateLeft64(uint64(b),-int(s)) & 1) == 1
+	return (bits.RotateLeft64(uint64(b), -int(s)) & 1) == 1
 }
 
 // helper function for testing
-func (b Bitboard) areSet(sqs... Square) bool {
-	for _,sq := range sqs {
+func (b Bitboard) areSet(sqs ...Square) bool {
+	for _, sq := range sqs {
 		if !b.IsSet(sq) {
 			return false
 		}

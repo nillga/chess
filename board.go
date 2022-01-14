@@ -1,25 +1,24 @@
 package chess
 
-
 // Board is a collection of Bitboard representations:
 // For each Piece, Color etc. those are saved in corresponding numbers
 type Board struct {
-	wKing    		Bitboard
-	wQueens  		Bitboard
-	wRooks   		Bitboard
-	wBishops 		Bitboard
-	wKnights 		Bitboard
-	wPawns   		Bitboard
-	bKing    		Bitboard
-	bQueens  		Bitboard
-	bRooks   		Bitboard
-	bBishops 		Bitboard
-	bKnights 		Bitboard
-	bPawns   		Bitboard
-	wPieces  		Bitboard
-	bPieces  		Bitboard
-	empty    		Bitboard
-	pieces   		Bitboard
+	wKing    Bitboard
+	wQueens  Bitboard
+	wRooks   Bitboard
+	wBishops Bitboard
+	wKnights Bitboard
+	wPawns   Bitboard
+	bKing    Bitboard
+	bQueens  Bitboard
+	bRooks   Bitboard
+	bBishops Bitboard
+	bKnights Bitboard
+	bPawns   Bitboard
+	wPieces  Bitboard
+	bPieces  Bitboard
+	empty    Bitboard
+	pieces   Bitboard
 }
 
 func FromMap(m map[Square]Piece) *Board {
@@ -62,13 +61,13 @@ func (b *Board) SetPieceBitBoard(piece Piece, bitboard Bitboard) {
 	case BlackQueen:
 		b.bQueens = bitboard
 	case BlackKing:
-		b.bKing = bitboard	
+		b.bKing = bitboard
 	}
 }
 
 func (b *Board) UtilBitboards() {
 	b.wPieces = b.wPawns + b.wKnights + b.wBishops + b.wRooks + b.wQueens + b.wKing
-	b.bPieces = b.bPawns + b.bKnights + b.bBishops + b.bRooks + b.bQueens + b.bKing 
+	b.bPieces = b.bPawns + b.bKnights + b.bBishops + b.bRooks + b.bQueens + b.bKing
 	b.pieces = b.wPieces + b.bPieces
 	b.empty = ^b.pieces
 }

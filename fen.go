@@ -20,7 +20,7 @@ import (
 											Turn Player
 	♜♞♝♛♚♝♞♜
 	♟♟♟♟♟♟♟♟
-	
+
 
 
 
@@ -52,7 +52,7 @@ func BoardFromFEN(fen string) (*Board, error) {
 			return nil, err
 		}
 		for file, piece := range rankMap {
-			m[NewSquare(rank,file)] = piece
+			m[NewSquare(rank, file)] = piece
 		}
 	}
 
@@ -63,7 +63,7 @@ func decodeRank(r Rank, s string) (map[File]Piece, error) {
 	m := make(map[File]Piece)
 	file := 0
 	for _, val := range s {
-		valString := fmt.Sprintf("%c",val)
+		valString := fmt.Sprintf("%c", val)
 		thisPiece := fenPieceMap[valString]
 		if thisPiece == Empty {
 			blank, err := strconv.Atoi(valString)

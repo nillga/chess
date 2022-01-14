@@ -47,7 +47,7 @@ func TestPiece(t *testing.T) {
 var (
 	blackPiece = BlackRook
 	whitePiece = WhiteBishop
-	noPiece =  Empty
+	noPiece    = Empty
 )
 
 func TestPieceString(t *testing.T) {

@@ -9,11 +9,12 @@ import (
 
 type rankTest struct {
 	name string
-	r Rank
+	r    Rank
 	rStr string
-	err bool
-	m map[File]Piece
+	err  bool
+	m    map[File]Piece
 }
+
 func TestDecodeRank(t *testing.T) {
 	tests := []rankTest{
 		{"Full row", Rank8, "rnbqkbnr", false, map[File]Piece{
@@ -42,27 +43,28 @@ func TestDecodeRank(t *testing.T) {
 		})
 	}
 }
+
 // fen coded -> *board + error
 
 type boardTest struct {
 	name string
 	bStr string
-	err bool
-	b *Board
+	err  bool
+	b    *Board
 }
 
 var (
 	petroffSquares = map[Square]Piece{
-		H8: BlackRook, F8: BlackBishop, E8: BlackKing, D8: BlackQueen, 
+		H8: BlackRook, F8: BlackBishop, E8: BlackKing, D8: BlackQueen,
 		C8: BlackBishop, B8: BlackKnight, A8: BlackRook,
-		H7: BlackPawn, G7: BlackPawn, F7: BlackPawn, C7: BlackPawn, 
+		H7: BlackPawn, G7: BlackPawn, F7: BlackPawn, C7: BlackPawn,
 		B7: BlackPawn, A7: BlackPawn,
 		D6: BlackPawn,
 		E4: BlackKnight, D4: WhitePawn,
 		F3: WhiteKnight,
-		H2: WhitePawn, G2: WhitePawn, F2: WhitePawn, 
+		H2: WhitePawn, G2: WhitePawn, F2: WhitePawn,
 		C2: WhitePawn, B2: WhitePawn, A2: WhitePawn,
-		H1: WhiteRook, F1: WhiteBishop, E1: WhiteKing, D1: WhiteQueen, 
+		H1: WhiteRook, F1: WhiteBishop, E1: WhiteKing, D1: WhiteQueen,
 		C1: WhiteBishop, B1: WhiteKnight, A1: WhiteRook,
 	}
 	petroff = FromMap(petroffSquares)

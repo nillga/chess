@@ -22,16 +22,16 @@ func (s Square) Rank() Rank {
 }
 
 func (s Square) Color() Color {
-	return Color(int(s%8+s/8)%2)
+	return Color(int(s%8+s/8) % 2)
 }
 
 func NewSquare(r Rank, f File) Square {
-	return Square(8*uint8(r)+uint8(f))
+	return Square(8*uint8(r) + uint8(f))
 }
 
 func (s Square) String() string {
 	return s.File().String() + s.Rank().String()
-} 
+}
 
 const (
 	A8 Square = iota
@@ -115,7 +115,7 @@ const (
 )
 
 func (r Rank) String() string {
-	return ranks[r:r+1]
+	return ranks[r : r+1]
 }
 
 type File uint8
@@ -132,7 +132,7 @@ const (
 )
 
 func (f File) String() string {
-	return files[f:f+1]
+	return files[f : f+1]
 }
 
 type Color uint8
