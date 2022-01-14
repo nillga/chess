@@ -21,7 +21,7 @@ var tests = []squareTest{
 }
 
 // no tests for invalid squares yet ?
-func TestSquare_Extraction(t *testing.T) {
+func TestSquareExtraction(t *testing.T) {
 	for i, test := range tests {
 		t.Run(fmt.Sprintf("ExtractionTest %d",i), func(t *testing.T){
 			rank := test.s.Rank()
@@ -46,7 +46,7 @@ func TestNewSquare (t *testing.T) {
 	}
 }
 
-func TestSquare_Color (t *testing.T) {
+func TestSquareColor (t *testing.T) {
 	for i, test := range tests {
 		t.Run(fmt.Sprintf("ColorTest %d",i), func(t *testing.T){
 			square := NewSquare(test.r, test.f)
@@ -58,35 +58,34 @@ func TestSquare_Color (t *testing.T) {
 	}
 }
 
-func TestStringer (t *testing.T) {
-	t.Run("White Square", func(t *testing.T){
-		whiteSquare := NewSquare(Rank4,FileE)
-		if whiteSquare.String() != "e4" {
-			t.Fatalf("Wrong Square-String generated: Got %v->%s",whiteSquare,whiteSquare.String())
-		}
-		if whiteSquare.Rank().String() != "4" {
-			t.Fatalf("Wrong Rank-String generated: Got %v->%s",whiteSquare.Rank(),whiteSquare.Rank().String())
-		}
-		if whiteSquare.File().String() != "e" {
-			t.Fatalf("Wrong File-String generated: Got %v->%s",whiteSquare.File(),whiteSquare.File().String())
-		}
-		if whiteSquare.Color().String() != "white" {
-			t.Fatalf("Wrong Color-String generated: Got %v->%s",whiteSquare.Color(),whiteSquare.Color().String())
-		}
-	})
-	t.Run("Black Square", func(t *testing.T){
-		blackSquare := NewSquare(Rank7,FileG)
-		if blackSquare.String() != "g7" {
-			t.Fatalf("Wrong Square-String generated: Got %v->%s",blackSquare,blackSquare.String())
-		}
-		if blackSquare.Rank().String() != "7" {
-			t.Fatalf("Wrong Rank-String generated: Got %v->%s",blackSquare.Rank(),blackSquare.Rank().String())
-		}
-		if blackSquare.File().String() != "g" {
-			t.Fatalf("Wrong File-String generated: Got %v->%s",blackSquare.File(),blackSquare.File().String())
-		}
-		if blackSquare.Color().String() != "black" {
-			t.Fatalf("Wrong Color-String generated: Got %v->%s",blackSquare.Color(),blackSquare.Color().String())
-		}
-	})
+func TestWhiteString(t *testing.T) {
+	whiteSquare := NewSquare(Rank4,FileE)
+	if whiteSquare.String() != "e4" {
+		t.Fatalf("Wrong Square-String generated: Got %v->%s",whiteSquare,whiteSquare.String())
+	}
+	if whiteSquare.Rank().String() != "4" {
+		t.Fatalf("Wrong Rank-String generated: Got %v->%s",whiteSquare.Rank(),whiteSquare.Rank().String())
+	}
+	if whiteSquare.File().String() != "e" {
+		t.Fatalf("Wrong File-String generated: Got %v->%s",whiteSquare.File(),whiteSquare.File().String())
+	}
+	if whiteSquare.Color().String() != "white" {
+		t.Fatalf("Wrong Color-String generated: Got %v->%s",whiteSquare.Color(),whiteSquare.Color().String())
+	}
+}
+
+func TestBlackString(t *testing.T) {
+	blackSquare := NewSquare(Rank7,FileG)
+	if blackSquare.String() != "g7" {
+		t.Fatalf("Wrong Square-String generated: Got %v->%s",blackSquare,blackSquare.String())
+	}
+	if blackSquare.Rank().String() != "7" {
+		t.Fatalf("Wrong Rank-String generated: Got %v->%s",blackSquare.Rank(),blackSquare.Rank().String())
+	}
+	if blackSquare.File().String() != "g" {
+		t.Fatalf("Wrong File-String generated: Got %v->%s",blackSquare.File(),blackSquare.File().String())
+	}
+	if blackSquare.Color().String() != "black" {
+		t.Fatalf("Wrong Color-String generated: Got %v->%s",blackSquare.Color(),blackSquare.Color().String())
+	}
 }
