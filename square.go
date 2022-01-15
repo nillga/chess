@@ -1,38 +1,48 @@
 package chess
 
+// TODO: limit exportation
+
 const (
 	ranks = "87654321"
 	files = "abcdefgh"
 )
 
-// we just want to store 0-63
-// e.g.: Square a1 <==> 56
+// Square is the numeric representation of a square
+// the squares are enumerated from 0-63, starting at A8 via H8 to H1
+// This coding allows simple mathematic operation to access a Square's core attributes or description,
+// namely their coordinates and their color:
+// The Rank is extracted by 8 - Square / 8, as we count against the enumeration
+// The File is extracted by Square % 8, pretty simple
+// The Color is evaluated by checking for the characteristics of both Rank and File:
+// If the sum of File and reverse Rank is even, the Square is White, if odd, then Black.
 type Square uint8
 
-// a1 <==> 56
-// 56 % 8 = 0 ==> File(0) ==> FileA
+// File extracts the File of a given Square
 func (s Square) File() File {
 	return File(int(s) % 8)
 }
 
-// a1 <==> 56
-// 56 / 8 = 7 ==> Rank(7) ==> 1
+// Rank extracts the Rank of a given Square
 func (s Square) Rank() Rank {
 	return Rank(int(s) / 8)
 }
 
+// Color extracts the Color of the given Square
 func (s Square) Color() Color {
 	return Color(int(s%8+s/8) % 2)
 }
 
+// NewSquare takes a Rank and a File and returns the described Square
 func NewSquare(r Rank, f File) Square {
 	return Square(8*uint8(r) + uint8(f))
 }
 
+// String makes Square implement the Stringer interface
 func (s Square) String() string {
 	return s.File().String() + s.Rank().String()
 }
 
+// Constant mapping of Square-notation and Bitboard-representation
 const (
 	A8 Square = iota
 	B8
@@ -101,8 +111,10 @@ const (
 	invalid
 )
 
+// The Rank type allows us to convert the reverse Rank into the actual Rank
 type Rank uint8
 
+// The mapping of reverse and actual Rank
 const (
 	Rank8 Rank = iota
 	Rank7
@@ -114,12 +126,15 @@ const (
 	Rank1
 )
 
+// String makes Rank fit the Stringer interface
 func (r Rank) String() string {
 	return ranks[r : r+1]
 }
 
+// File is an enumeration for the Files of a board
 type File uint8
 
+// That way the 0-file turns into FileA
 const (
 	FileA File = iota
 	FileB
@@ -131,18 +146,22 @@ const (
 	FileH
 )
 
+// String allows File to use the Stringer interface
 func (f File) String() string {
 	return files[f : f+1]
 }
 
+// Color type is representing a Piece' or Square's color
 type Color uint8
 
+// The 3 options, Neither is used e.g. for errors
 const (
 	White Color = iota
 	Black
 	Neither
 )
 
+// String makes Color use Stringer as well
 func (c Color) String() string {
 	switch c {
 	case White:
