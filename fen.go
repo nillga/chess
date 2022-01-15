@@ -28,6 +28,7 @@ import (
 	♖♘♗♕♔♗♘♖
 */
 
+// The FEN type allows FEN-notation related actions on a string, representing FEN code
 type FEN string
 
 /*
@@ -39,6 +40,8 @@ func (f FEN) Parse() (*Board, error) {
 }
 */
 
+// BoardFromFEN takes the board-representation part of a FEN string and turns it into a *Board
+// it returns an error, when the Board structure is invalid: invalid symbols, wrong rank/file-counts
 func BoardFromFEN(fen string) (*Board, error) {
 	m := make(map[Square]Piece)
 	ranks := strings.Split(fen, "/")

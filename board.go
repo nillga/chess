@@ -21,6 +21,7 @@ type Board struct {
 	pieces   Bitboard
 }
 
+// FromMap takes a Square->Piece mapping and calculates the corresponding Bitboards to create a *Board
 func FromMap(m map[Square]Piece) *Board {
 	b := &Board{}
 	for _, p := range pieces {
@@ -36,6 +37,7 @@ func FromMap(m map[Square]Piece) *Board {
 	return b
 }
 
+// SetPieceBitBoard links a Piece-related Bitboard to the correct Board-field
 func (b *Board) SetPieceBitBoard(piece Piece, bitboard Bitboard) {
 	switch piece {
 	case WhitePawn:
@@ -65,6 +67,7 @@ func (b *Board) SetPieceBitBoard(piece Piece, bitboard Bitboard) {
 	}
 }
 
+// UtilBitboards calculates the total white/black/overall/empty Bitboards and writes them to the given *Board
 func (b *Board) UtilBitboards() {
 	b.wPieces = b.wPawns + b.wKnights + b.wBishops + b.wRooks + b.wQueens + b.wKing
 	b.bPieces = b.bPawns + b.bKnights + b.bBishops + b.bRooks + b.bQueens + b.bKing

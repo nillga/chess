@@ -27,6 +27,7 @@ import (
 */
 type Bitboard uint64
 
+// MakeBitboard turns a Square "list" into a Bitboard
 func MakeBitboard(squares map[Square]bool) (b Bitboard) {
 	for sq := range squares {
 		b += (1 << sq)
@@ -34,6 +35,7 @@ func MakeBitboard(squares map[Square]bool) (b Bitboard) {
 	return b
 }
 
+// IsSet checks, whether the given Square (Bit!) is set in the corresponding Bitboard
 func (b Bitboard) IsSet(s Square) bool {
 	return (bits.RotateLeft64(uint64(b), -int(s)) & 1) == 1
 }

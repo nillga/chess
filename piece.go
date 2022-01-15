@@ -2,6 +2,7 @@ package chess
 
 import "strings"
 
+// AbstractPiece is an integer representation for the Chess-Pieces' Types
 type AbstractPiece uint8
 
 var (
@@ -9,6 +10,7 @@ var (
 	pieceUnicodes = []string{" ", "♙", "♘", "♗", "♖", "♕", "♔", "♟", "♞", "♝", "♜", "♛", "♚"}
 )
 
+// AbstractPiece is implemented with an enumeration
 const (
 	None AbstractPiece = iota
 	Pawn
@@ -19,12 +21,15 @@ const (
 	King
 )
 
+// String -> Stringer interface
 func (a AbstractPiece) String() string {
 	return abstractChars[a]
 }
 
+// The Piece type allows an integer representation of a chess Piece
 type Piece uint8
 
+// Color returns the explicit Piece's color
 func (p Piece) Color() Color {
 	if p == Empty {
 		return Neither
@@ -35,6 +40,7 @@ func (p Piece) Color() Color {
 	return White
 }
 
+// Abstract returns the AbstractPiece from which the given explicit Piece has been derived
 func (p Piece) Abstract() AbstractPiece {
 	switch p {
 	case BlackPawn, WhitePawn:
@@ -54,10 +60,12 @@ func (p Piece) Abstract() AbstractPiece {
 	}
 }
 
+// String fulfills the Stringer interface
 func (p Piece) String() string {
 	return pieceUnicodes[p]
 }
 
+// MakePiece combines the given AbstractPiece and Color to return an explicit Piece
 func MakePiece(a AbstractPiece, c Color) Piece {
 	p := Piece(a)
 
@@ -67,6 +75,7 @@ func MakePiece(a AbstractPiece, c Color) Piece {
 	return p + 6*Piece(c)
 }
 
+// An enumeration containing all explicit chess pieces
 const (
 	Empty Piece = iota
 	WhitePawn
@@ -83,6 +92,7 @@ const (
 	BlackKing
 )
 
+// FEN returns the FEN-notation-styled symbol for the given Piece
 func (p Piece) FEN() string {
 	symbol := p.Abstract().String()
 	if p.Color() == Black {

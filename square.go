@@ -108,7 +108,6 @@ const (
 	F1
 	G1
 	H1
-	invalid
 )
 
 // The Rank type allows us to convert the reverse Rank into the actual Rank
